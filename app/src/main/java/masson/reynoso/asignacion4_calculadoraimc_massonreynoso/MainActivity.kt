@@ -27,7 +27,27 @@ class MainActivity : AppCompatActivity() {
             imc = calcularIMC(peso, altura)
 
             tv_imc.setText(imc.toString())
-            tv_range.setText(rango(imc))
+
+            if(imc < 18.5) {
+                tv_range.setText("Bajo peso")
+                tv_range.setBackgroundColor(getResources().getColor(R.color.colorBrown))
+            } else if(imc >= 18.5 && imc <= 24.9) {
+                tv_range.setText("Normal")
+                tv_range.setBackgroundColor(getResources().getColor(R.color.colorGreenish))
+            } else if(imc >= 25 && imc <= 29.9) {
+                tv_range.setText("Sobrepeso")
+                tv_range.setBackgroundColor(getResources().getColor(R.color.colorGreen))
+            } else if(imc >=30 && imc <= 34.9) {
+                tv_range.setText("Obesidad grado 1")
+                tv_range.setBackgroundColor(getResources().getColor(R.color.colorYellow))
+            } else if(imc >= 35 && imc <= 39.9) {
+                tv_range.setText("Obesidad grado 2")
+                tv_range.setBackgroundColor(getResources().getColor(R.color.colorOrange))
+            } else {
+                tv_range.setText("Obesidad grado 3")
+                tv_range.setBackgroundColor(getResources().getColor(R.color.colorRed))
+            }
+
         }
     }
 
@@ -35,14 +55,4 @@ class MainActivity : AppCompatActivity() {
         return peso / (altura * altura)
     }
 
-    fun rango(imc: Float): String {
-        var range: String = ""
-
-        if(imc < 18.5) {
-            range = "Bajo peso"
-
-        }
-
-        return range
-    }
 }
